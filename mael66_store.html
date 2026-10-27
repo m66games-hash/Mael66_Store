@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050805">
+<title>MAEL66 STORE</title>
+<style>
+:root{--bg:#050805;--panel:#0c120d;--green:#39ff14;--muted:#a7b5a5;--line:#1c3820}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#102012 0,#050805 48%);color:#f4fff3;font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+#loading{position:fixed;inset:0;z-index:99;background:#030503;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity .45s}
+.logo{font-weight:1000;letter-spacing:2px;color:var(--green);text-shadow:0 0 18px #39ff1470;font-size:clamp(28px,7vw,48px)}
+.loader{width:180px;height:5px;border:1px solid #214522;border-radius:10px;overflow:hidden}
+.loader span{display:block;height:100%;width:35%;background:var(--green);box-shadow:0 0 12px var(--green);animation:load 1s infinite ease-in-out}
+@keyframes load{from{transform:translateX(-110%)}to{transform:translateX(400%)}}
+header{position:sticky;top:0;z-index:5;background:#050805eF;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);padding:14px max(16px,calc((100vw - 1100px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{color:var(--green);font-weight:1000;letter-spacing:1.4px;font-size:20px}
+.tag{font-size:11px;color:var(--muted);margin-top:3px}
+.wrap{max-width:1100px;margin:auto;padding:22px 16px 50px}
+.hero{border:1px solid #27542b;border-radius:20px;padding:24px;background:linear-gradient(120deg,#102312,#080c08 70%);box-shadow:0 0 25px #39ff1410;margin-bottom:24px}
+.hero h1{margin:0 0 8px;font-size:clamp(25px,5vw,42px)}.hero h1 span{color:var(--green)}
+.hero p{color:var(--muted);line-height:1.5;margin:0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--green);border-radius:11px;padding:11px 14px;background:var(--green);color:#041004;font-weight:800}
+.btn.secondary{background:transparent;color:var(--green)}.btn.danger{border-color:#ff5b5b;color:#ffb3b3;background:transparent}
+.btn:active{transform:scale(.98)}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 0 14px}.section-title h2{margin:0;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px}
+.card{background:linear-gradient(180deg,#101810,#090d09);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.cover{height:160px;background:#0c160d;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#537b54;font-size:42px}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cardbody{padding:14px}.card h3{margin:0 0 8px;font-size:18px}.desc{color:var(--muted);font-size:13px;line-height:1.45;min-height:36px;white-space:pre-wrap}
+.price{color:var(--green);font-weight:900;font-size:21px;margin:12px 0}
+.card .btn{width:100%}
+.panel{background:#0b110c;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:24px}
+.panel h2{margin:0 0 8px}.note{color:var(--muted);font-size:13px;line-height:1.5}
+label{display:block;font-size:13px;color:#c9d9c7;margin:12px 0 6px}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #29432b;background:#050805;color:#fff;outline:none}
+input:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 2px #39ff1420}
+textarea{min-height:75px;resize:vertical}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.full{grid-column:1/-1}
+.hidden{display:none!important}
+footer{text-align:center;color:#708170;font-size:12px;padding:24px 16px}
+.modal{position:fixed;inset:0;z-index:20;background:#000c;display:flex;align-items:center;justify-content:center;padding:16px}
+.modalbox{width:min(480px,100%);max-height:90vh;overflow:auto;background:#0b110c;border:1px solid var(--green);border-radius:18px;padding:20px;box-shadow:0 0 35px #39ff1420}
+.modalbox h2{margin-top:0;color:var(--green)}
+@media(max-width:560px){header{padding:12px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:19px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cover{height:125px}.cardbody{padding:10px}.card h3{font-size:15px}.desc{font-size:12px}.price{font-size:18px}.card .btn{font-size:12px;padding:10px 6px}}
+</style>
+</head>
+<body>
+<div id="loading"><div class="logo">MAEL66 STORE</div><div style="color:#9aab99;letter-spacing:3px;font-size:11px">SUA LOJA DE JOGOS</div><div class="loader"><span></span></div></div>
+<header><div><div class="brand">MAEL66 STORE</div><div class="tag">APKs • JOGOS • APLICATIVOS</div></div><button class="btn secondary" id="adminToggle">⚙ Painel</button></header>
+<main class="wrap">
+<section class="hero"><h1>SEU PRÓXIMO JOGO <span>ESTÁ AQUI.</span></h1><p>Explore os produtos da MAEL66 STORE. Escolha seu APK, confira o preço e fale conosco para pagar via Pix.</p></section>
+<div class="section-title"><h2>🎮 Catálogo</h2><span id="count" class="note">0 produtos</span></div>
+<div id="products" class="grid"></div>
+<section id="adminPanel" class="panel hidden">
+<h2>⚙ Painel administrativo</h2>
+<p class="note">Cadastre e gerencie os produtos pelo celular. Os dados deste protótipo ficam salvos somente neste navegador. Para que produtos adicionados aqui apareçam para todos os clientes na loja publicada, será necessário conectar um banco de dados/serviço online.</p>
+<div class="formgrid">
+<div class="full"><label for="adminPassword">Senha do painel (defina uma senha local)</label><input id="adminPassword" type="password" placeholder="Digite a senha do painel"><button class="btn secondary" id="unlockBtn" style="margin-top:8px">Desbloquear painel</button></div>
+</div>
+<div id="adminFields" class="hidden">
+<hr style="border-color:#1c3820;margin:18px 0">
+<h3 id="formTitle">Adicionar produto</h3>
+<form id="productForm">
+<input type="hidden" id="editId">
+<div class="formgrid">
+<div><label for="pName">Nome do APK *</label><input id="pName" required maxlength="70" placeholder="Ex.: MAEL66 RACING"></div>
+<div><label for="pPrice">Preço (R$) *</label><input id="pPrice" required type="number" min="0" step="0.01" placeholder="9.90"></div>
+<div class="full"><label for="pDesc">Descrição</label><textarea id="pDesc" maxlength="500" placeholder="Descreva o jogo ou aplicativo"></textarea></div>
+<div class="full"><label for="pImage">Imagem da capa (galeria do celular)</label><input id="pImage" type="file" accept="image/*"><div class="note">Use uma imagem leve para não ocupar muito espaço.</div></div>
+<div class="full"><label for="pLink">Link do APK (Google Drive ou outro serviço)</label><input id="pLink" type="url" placeholder="https://..."></div>
+</div>
+<div class="row" style="margin-top:14px"><button class="btn" type="submit">💾 Salvar produto</button><button class="btn secondary" type="button" id="cancelEdit">Cancelar edição</button></div>
+</form>
+<h3 style="margin-top:24px">Produtos cadastrados</h3><div id="adminList"></div>
+<hr style="border-color:#1c3820;margin:20px 0">
+<h3>Configurações da loja</h3>
+<label for="pixKey">Chave Pix</label><input id="pixKey" placeholder="Digite sua chave Pix">
+<label for="whats">WhatsApp com DDD</label><input id="whats" inputmode="numeric" placeholder="Ex.: 5585999999999">
+<button class="btn" id="saveSettings" style="margin-top:12px">Salvar configurações</button>
+<p class="note">Não coloque senhas bancárias ou dados secretos aqui. A chave Pix e o WhatsApp ficam visíveis aos clientes.</p>
+</div>
+</section>
+</main>
+<footer>MAEL66 STORE © <span id="year"></span> • Compre com segurança e confirme o pagamento antes de liberar o download.</footer>
+<div id="purchaseModal" class="modal hidden"><div class="modalbox"><button id="closeModal" class="btn secondary" style="float:right">✕</button><h2>Finalizar pedido</h2><div id="orderInfo"></div><p class="note">Faça o Pix usando a chave informada abaixo. Depois, envie o comprovante pelo WhatsApp. O vendedor confirmará o pagamento e enviará o link do APK.</p><div id="pixDisplay" style="background:#050805;border:1px dashed #39ff14;padding:12px;border-radius:10px;overflow-wrap:anywhere;margin:12px 0"></div><div class="row"><button class="btn secondary" id="copyPix">Copiar chave Pix</button><button class="btn" id="sendWhats">Enviar comprovante no WhatsApp</button></div><p class="note">O botão de compra não confirma o pagamento automaticamente. Nunca envie o APK antes de verificar o recebimento no seu aplicativo bancário.</p></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='mael66_store_products_v1', SETTINGS='mael66_store_settings_v1', PASSKEY='mael66_store_admin_pass_v1';
+let products=[], settings={pix:'',whats:''}, coverData='', unlocked=false, selectedProduct=null;
+function read(){try{products=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{products=[]}try{settings={...settings,...JSON.parse(localStorage.getItem(SETTINGS)||'{}')}}catch{}}
+function writeProducts(){localStorage.setItem(KEY,JSON.stringify(products))}
+function money(v){return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function escapeHTML(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){
+ $('count').textContent=products.length+' produto'+(products.length===1?'':'s');
+ const host=$('products');
+ if(!products.length){host.innerHTML='<div class="panel" style="grid-column:1/-1;text-align:center"><div style="font-size:38px">🎮</div><h3>A loja está sendo preparada</h3><p class="note">Abra o painel administrativo para cadastrar o primeiro APK.</p></div>'}
+ else host.innerHTML=products.map(p=>`<article class="card"><div class="cover">${p.image?`<img src="${p.image}" alt="Capa de ${escapeHTML(p.name)}">`:'🎮'}</div><div class="cardbody"><h3>${escapeHTML(p.name)}</h3><div class="desc">${escapeHTML(p.desc||'Jogo ou aplicativo digital.')}</div><div class="price">${money(p.price)}</div><button class="btn" onclick="buy('${p.id}')">COMPRAR AGORA</button></div></article>`).join('');
+ renderAdmin();
+}
+function renderAdmin(){if(!unlocked)return; $('adminList').innerHTML=products.length?products.map(p=>`<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;border:1px solid #1c3820;padding:10px;border-radius:10px;margin:8px 0"><div><b>${escapeHTML(p.name)}</b><div class="note">${money(p.price)}</div></div><div class="row"><button class="btn secondary" onclick="editProduct('${p.id}')">Editar</button><button class="btn danger" onclick="deleteProduct('${p.id}')">Excluir</button></div></div>`).join(''):'<p class="note">Nenhum produto cadastrado.</p>'}
+$('adminToggle').onclick=()=>{$('adminPanel').classList.toggle('hidden');$('adminPanel').scrollIntoView({behavior:'smooth',block:'start'})};
+$('unlockBtn').onclick=()=>{const entered=$('adminPassword').value;let saved=localStorage.getItem(PASSKEY);if(!saved){if(entered.length<4){alert('Crie uma senha com pelo menos 4 caracteres.');return}localStorage.setItem(PASSKEY,entered);saved=entered;alert('Senha local criada. Guarde-a com segurança.')}if(entered!==saved){alert('Senha incorreta.');return}unlocked=true;$('adminFields').classList.remove('hidden');$('pixKey').value=settings.pix||'';$('whats').value=settings.whats||'';renderAdmin()};
+$('productForm').onsubmit=async e=>{e.preventDefault();if(!unlocked)return;let id=$('editId').value||('p'+Date.now());let old=products.find(p=>p.id===id);let image=coverData||old?.image||'';const file=$('pImage').files[0];if(file){if(file.size>2*1024*1024){alert('A imagem deve ter até 2 MB.');return}image=await new Promise((resolve,reject)=>{let r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+const p={id,name:$('pName').value.trim(),price:Number($('pPrice').value),desc:$('pDesc').value.trim(),image,link:$('pLink').value.trim()};
+if(old)products=products.map(x=>x.id===id?p:x);else products.unshift(p);try{writeProducts()}catch(err){alert('Não foi possível salvar. Tente uma imagem menor.');return}resetForm();render();alert('Produto salvo neste navegador.')};
+function resetForm(){$('productForm').reset();$('editId').value='';coverData='';$('formTitle').textContent='Adicionar produto'}
+$('cancelEdit').onclick=resetForm;
+window.editProduct=id=>{const p=products.find(x=>x.id===id);if(!p)return;$('editId').value=p.id;$('pName').value=p.name;$('pPrice').value=p.price;$('pDesc').value=p.desc||'';$('pLink').value=p.link||'';coverData=p.image||'';$('formTitle').textContent='Editar produto';$('productForm').scrollIntoView({behavior:'smooth',block:'start'})};
+window.deleteProduct=id=>{if(confirm('Excluir este produto?')){products=products.filter(p=>p.id!==id);writeProducts();render()}};
+$('saveSettings').onclick=()=>{settings={pix:$('pixKey').value.trim(),whats:$('whats').value.replace(/\D/g,'')};localStorage.setItem(SETTINGS,JSON.stringify(settings));alert('Configurações salvas neste navegador.')};
+window.buy=id=>{selectedProduct=products.find(p=>p.id===id);if(!selectedProduct)return;$('orderInfo').innerHTML=`<b>${escapeHTML(selectedProduct.name)}</b><div class="price">${money(selectedProduct.price)}</div>`;$('pixDisplay').textContent=settings.pix||'O vendedor ainda não cadastrou a chave Pix. Entre em contato pelo WhatsApp.';$('purchaseModal').classList.remove('hidden')};
+$('closeModal').onclick=()=>$('purchaseModal').classList.add('hidden');
+$('purchaseModal').addEventListener('click',e=>{if(e.target===$('purchaseModal'))$('purchaseModal').classList.add('hidden')});
+$('copyPix').onclick=async()=>{if(!settings.pix){alert('A chave Pix ainda não foi cadastrada.');return}try{await navigator.clipboard.writeText(settings.pix);alert('Chave Pix copiada.')}catch{prompt('Copie sua chave Pix:',settings.pix)}};
+$('sendWhats').onclick=()=>{if(!settings.whats){alert('O vendedor ainda não cadastrou o WhatsApp.');return}const msg=`Olá! Quero comprar o APK "${selectedProduct.name}" na MAEL66 STORE. Valor: ${money(selectedProduct.price)}. Pode me orientar sobre o pagamento via Pix?`;window.open('https://wa.me/'+settings.whats+'?text='+encodeURIComponent(msg),'_blank')};
+$('year').textContent=new Date().getFullYear();
+read();render();setTimeout(()=>{$('loading').style.opacity='0';setTimeout(()=>$('loading').remove(),500)},1300);
+</script>
+</body>
+</html>
